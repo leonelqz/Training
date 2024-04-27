@@ -1,6 +1,14 @@
-## Esto es el readme
+---
+jupytext:
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  name: python3
+---
 
-## Y ahora le agregué una nueva linea...
 
 ```{code-cell} ipython3
 import hvplot.pandas
