@@ -12,6 +12,9 @@ kernelspec:
 
 ### Linea 1...
 
+linea 2
+
+ 
 ```{code-cell} ipython3
 import hvplot.pandas
 from bokeh.sampledata.penguins import data as df
