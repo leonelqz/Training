@@ -16,9 +16,7 @@ linea 2
 
  
 ```{code-cell} ipython3
-import hvplot.pandas
-from bokeh.sampledata.penguins import data as df
+print("Holaaa")
 
-df.hvplot.scatter(x='bill_length_mm', y='bill_depth_mm', by='species')
 ```
 
