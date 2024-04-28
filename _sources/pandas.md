@@ -28,7 +28,7 @@ df.plot("A", "B", title="Plot de ejemplo")
 import hvplot.xarray
 import xarray as xr
 
-ds = xr.open_dataset("/Training/ssta_prueba.nc")
+ds = xr.open_dataset("ssta_prueba.nc")
 plot = ds.anom.hvplot(x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
 ```
 
