@@ -20,17 +20,20 @@ df = pd.DataFrame( {"A": range(100), "B": [k**2 for k in range(100)] } )
 df
 ```
 
+```{code-cell}
+df.plot("A", "B", title="Plot de ejemplo")
+```
 
-### Con ipython3
 
+
+
+##### Con ipython3
 ```{code-cell} ipython3
 note = "Python syntax highlighting"
 print(note)
 ```
 
-
-### Sin ipython3
-
+##### Sin ipython3
 ```{code-cell}
 note = "Python syntax highlighting"
 print(note)
