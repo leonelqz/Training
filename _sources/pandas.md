@@ -12,13 +12,13 @@ kernelspec:
   name: python3
 ---
 
-### Sea Surface Temperature Anomaly
+#### Sea Surface Temperature Anomaly
 
 ```{code-cell}
 :tags: [remove-input]
 import hvplot.xarray
 import xarray as xr
-import ee
+import ee, os
 from xee import EarthEngineBackendArray
 def _slice_collection_silence(self, image_slice: slice) -> ee.Image:
   self._ee_init_check()
@@ -48,11 +48,13 @@ def _slice_collection_silence(self, image_slice: slice) -> ee.Image:
 EarthEngineBackendArray._slice_collection = _slice_collection_silence
 
 
-#ruta_json = r"C:\Users\Leo\Dropbox\ee-leoqguz-4754b53f9bc6.json"
-ruta_json = "ee-leoqguz-4754b53f9bc6.json"
 service_account = "gee-project@ee-leoqguz.iam.gserviceaccount.com"
-credentials = ee.ServiceAccountCredentials(service_account, ruta_json)
+json = "GEE_secret.json"
+with open(json, "w") as file:
+  file.write(os.environ["GEE"])
+credentials = ee.ServiceAccountCredentials(service_account, json)
 ee.Initialize(credentials)
+os.remove(json)
 
 #ds = xr.open_dataset("ssta_100_dias.nc")
 #ds.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
