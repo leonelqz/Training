@@ -12,35 +12,25 @@ kernelspec:
   name: python3
 ---
 
-### Pruebo el code-cell
+### Sea Surface Temperature Anomaly
 
 ```{code-cell}
-import pandas as pd
-df = pd.DataFrame( {"A": range(100), "B": [k**2 for k in range(100)] } )
-df
-```
-
-```{code-cell}
-df.plot("A", "B", title="Plot de ejemplo")
-```
-
-```{code-cell}
+:tags: [remove-input]
 import hvplot.xarray
 import xarray as xr
+import ee
 
-ds = xr.open_dataset("ssta_prueba.nc")
-ds.anom.hvplot(x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
-```
+ruta_json = r"C:\Users\Leo\Dropbox\ee-leoqguz-4754b53f9bc6.json"
+service_account = "gee-project@ee-leoqguz.iam.gserviceaccount.com"
+credentials = ee.ServiceAccountCredentials(service_account, ruta_json)
+ee.Initialize(credentials)
 
+#ds = xr.open_dataset("ssta_100_dias.nc")
+#ds.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
 
-##### Con ipython3
-```{code-cell} ipython3
-note = "Python syntax highlighting"
-print(note)
-```
+ds = xr.open_dataset("ee://NOAA/CDR/OISST/V2_1", engine="ee", chunks="auto")
+ds.anom[-1].hvplot(x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
 
-##### Sin ipython3
-```{code-cell}
-note = "Python syntax highlighting"
-print(note)
+#ds_100 = ds.anom[-100:].load()
+#ds_100.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
 ```

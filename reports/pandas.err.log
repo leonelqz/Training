@@ -1,0 +1,83 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/codespace/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/local/python/3.10.13/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import hvplot.xarray
+import xarray as xr
+import ee
+
+ruta_json = r"C:\Users\Leo\Dropbox\ee-leoqguz-4754b53f9bc6.json"
+service_account = "gee-project@ee-leoqguz.iam.gserviceaccount.com"
+credentials = ee.ServiceAccountCredentials(service_account, ruta_json)
+ee.Initialize(credentials)
+
+#ds = xr.open_dataset("ssta_100_dias.nc")
+#ds.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
+
+ds = xr.open_dataset("ee://NOAA/CDR/OISST/V2_1", engine="ee", chunks="auto")
+ds.anom[-1].hvplot(x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
+
+#ds_100 = ds.anom[-100:].load()
+#ds_100.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[1], line 7[0m
+[1;32m      5[0m ruta_json [38;5;241m=[39m [38;5;124mr[39m[38;5;124m"[39m[38;5;124mC:[39m[38;5;124m\[39m[38;5;124mUsers[39m[38;5;124m\[39m[38;5;124mLeo[39m[38;5;124m\[39m[38;5;124mDropbox[39m[38;5;124m\[39m[38;5;124mee-leoqguz-4754b53f9bc6.json[39m[38;5;124m"[39m
+[1;32m      6[0m service_account [38;5;241m=[39m [38;5;124m"[39m[38;5;124mgee-project@ee-leoqguz.iam.gserviceaccount.com[39m[38;5;124m"[39m
+[0;32m----> 7[0m credentials [38;5;241m=[39m [43mee[49m[38;5;241;43m.[39;49m[43mServiceAccountCredentials[49m[43m([49m[43mservice_account[49m[43m,[49m[43m [49m[43mruta_json[49m[43m)[49m
+[1;32m      8[0m ee[38;5;241m.[39mInitialize(credentials)
+[1;32m     10[0m [38;5;66;03m#ds = xr.open_dataset("ssta_100_dias.nc")[39;00m
+[1;32m     11[0m [38;5;66;03m#ds.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))[39;00m
+
+File [0;32m/usr/local/python/3.10.13/lib/python3.10/site-packages/ee/_helpers.py:42[0m, in [0;36mServiceAccountCredentials[0;34m(email, key_file, key_data)[0m
+[1;32m     40[0m [38;5;66;03m# Assume anything that doesn't end in '.pem' is a JSON key.[39;00m
+[1;32m     41[0m [38;5;28;01mif[39;00m key_file [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m key_file[38;5;241m.[39mendswith([38;5;124m'[39m[38;5;124m.pem[39m[38;5;124m'[39m):
+[0;32m---> 42[0m   [38;5;28;01mreturn[39;00m [43mservice_account[49m[38;5;241;43m.[39;49m[43mCredentials[49m[38;5;241;43m.[39;49m[43mfrom_service_account_file[49m[43m([49m
+[1;32m     43[0m [43m      [49m[43mkey_file[49m[43m,[49m[43m [49m[43mscopes[49m[38;5;241;43m=[39;49m[43moauth[49m[38;5;241;43m.[39;49m[43mSCOPES[49m[43m)[49m
+[1;32m     45[0m [38;5;66;03m# If 'key_data' can be decoded as JSON, it's probably a raw JSON key.[39;00m
+[1;32m     46[0m [38;5;28;01mif[39;00m key_data:
+
+File [0;32m/usr/local/python/3.10.13/lib/python3.10/site-packages/google/oauth2/service_account.py:258[0m, in [0;36mCredentials.from_service_account_file[0;34m(cls, filename, **kwargs)[0m
+[1;32m    246[0m [38;5;129m@classmethod[39m
+[1;32m    247[0m [38;5;28;01mdef[39;00m [38;5;21mfrom_service_account_file[39m([38;5;28mcls[39m, filename, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[1;32m    248[0m [38;5;250m    [39m[38;5;124;03m"""Creates a Credentials instance from a service account json file.[39;00m
+[1;32m    249[0m 
+[1;32m    250[0m [38;5;124;03m    Args:[39;00m
+[0;32m   (...)[0m
+[1;32m    256[0m [38;5;124;03m            credentials.[39;00m
+[1;32m    257[0m [38;5;124;03m    """[39;00m
+[0;32m--> 258[0m     info, signer [38;5;241m=[39m [43m_service_account_info[49m[38;5;241;43m.[39;49m[43mfrom_filename[49m[43m([49m
+[1;32m    259[0m [43m        [49m[43mfilename[49m[43m,[49m[43m [49m[43mrequire[49m[38;5;241;43m=[39;49m[43m[[49m[38;5;124;43m"[39;49m[38;5;124;43mclient_email[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mtoken_uri[39;49m[38;5;124;43m"[39;49m[43m][49m
+[1;32m    260[0m [43m    [49m[43m)[49m
+[1;32m    261[0m     [38;5;28;01mreturn[39;00m [38;5;28mcls[39m[38;5;241m.[39m_from_signer_and_info(signer, info, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+
+File [0;32m/usr/local/python/3.10.13/lib/python3.10/site-packages/google/auth/_service_account_info.py:78[0m, in [0;36mfrom_filename[0;34m(filename, require, use_rsa_signer)[0m
+[1;32m     64[0m [38;5;28;01mdef[39;00m [38;5;21mfrom_filename[39m(filename, require[38;5;241m=[39m[38;5;28;01mNone[39;00m, use_rsa_signer[38;5;241m=[39m[38;5;28;01mTrue[39;00m):
+[1;32m     65[0m [38;5;250m    [39m[38;5;124;03m"""Reads a Google service account JSON file and returns its parsed info.[39;00m
+[1;32m     66[0m 
+[1;32m     67[0m [38;5;124;03m    Args:[39;00m
+[0;32m   (...)[0m
+[1;32m     76[0m [38;5;124;03m            info and a signer instance.[39;00m
+[1;32m     77[0m [38;5;124;03m    """[39;00m
+[0;32m---> 78[0m     [38;5;28;01mwith[39;00m [43mio[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43mfilename[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mr[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mutf-8[39;49m[38;5;124;43m"[39;49m[43m)[49m [38;5;28;01mas[39;00m json_file:
+[1;32m     79[0m         data [38;5;241m=[39m json[38;5;241m.[39mload(json_file)
+[1;32m     80[0m         [38;5;28;01mreturn[39;00m data, from_dict(data, require[38;5;241m=[39mrequire, use_rsa_signer[38;5;241m=[39muse_rsa_signer)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'C:\\Users\\Leo\\Dropbox\\ee-leoqguz-4754b53f9bc6.json'
+
