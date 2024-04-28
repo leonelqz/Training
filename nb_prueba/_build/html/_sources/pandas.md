@@ -19,6 +19,8 @@ kernelspec:
 import hvplot.xarray
 import xarray as xr
 import ee
+import warnings
+warnings.filterwarnings("ignore")
 
 #ruta_json = r"C:\Users\Leo\Dropbox\ee-leoqguz-4754b53f9bc6.json"
 ruta_json = "ee-leoqguz-4754b53f9bc6.json"
