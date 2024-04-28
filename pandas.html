@@ -176,8 +176,6 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Pruebo el code-cell</a></li>
 </ul>
@@ -495,17 +493,35 @@ document.write(`
 <img alt="_images/c7a27d0e0f8557da56d7f5d5dc2191b9f784f5f4ffb189ee240712f4ff92b453.png" src="_images/c7a27d0e0f8557da56d7f5d5dc2191b9f784f5f4ffb189ee240712f4ff92b453.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hvplot.xarray</span>
+<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;/Training/ssta_prueba.nc&quot;</span><span class="p">)</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">anom</span><span class="o">.</span><span class="n">hvplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">hvplot.xarray</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s2">&quot;/Training/ssta_prueba.nc&quot;</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;hvplot&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <section id="con-ipython3">
 <h2>Con ipython3<a class="headerlink" href="#con-ipython3" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">note</span> <span class="o">=</span> <span class="s2">&quot;Python syntax highlighting&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python syntax highlighting
 </pre></div>
 </div>
 </div>
@@ -517,11 +533,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">note</span> <span class="o">=</span> <span class="s2">&quot;Python syntax highlighting&quot;</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python syntax highlighting
 </pre></div>
 </div>
 </div>
