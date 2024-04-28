@@ -32,7 +32,8 @@ ee.Initialize(credentials)
 #ds.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
 
 ds = xr.open_dataset("ee://NOAA/CDR/OISST/V2_1", engine="ee", chunks="auto")
-ds.anom[-1].hvplot(x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
+ds = ds.anom[-1].load()
+ds.hvplot(x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
 
 #ds_100 = ds.anom[-100:].load()
 #ds_100.hvplot(groupby='time', x="lon", y="lat", cmap="bwr", clim=(-1000, 1000))
