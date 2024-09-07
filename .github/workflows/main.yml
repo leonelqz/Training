@@ -7,10 +7,12 @@ jobs:
   Ejecutar_script:
     runs-on: self-hosted
     steps:        
-    - name: Hacer print
-      run: |
+    - name: Ver cosas del print
+      run: 
+        pwd
+        ls
         echo $(python3 --version)
-
+        
     # - name: Correr script
     #   run: |
-    #     python Download.py
+    #     python envio_correo.py
