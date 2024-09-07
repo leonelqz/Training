@@ -9,11 +9,10 @@ jobs:
     steps:        
     - name: Ver cosas del server
       run: |
-        python3 --version
-        echo $(python3 --version)
-        cd
-        ls
+        # python3 --version
+        cd && cd Pruebas
+        pwd
         
-    # - name: Correr script
+    # - name: HACER PULL
     #   run: |
     #     python envio_correo.py
