@@ -1,15 +1,15 @@
 name: Prueba_CI_CD
 
+on:
+  push
 
 jobs:
-  Ejecutar:
+  Ejecutar_script:
     runs-on: self-hosted
-
     steps:        
     - name: Hacer print
       run: |
         echo $(python3 --version)
-        # pip install xee netcdf4 matplotlib cartopy hvplot
 
     # - name: Correr script
     #   run: |
