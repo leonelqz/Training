@@ -9,9 +9,10 @@ jobs:
     steps:        
     - name: Ver cosas del server
       run: |
-        echo $(pwd)
-        echo $(ls)
+        python3 --version
         echo $(python3 --version)
+        cd
+        ls
         
     # - name: Correr script
     #   run: |
