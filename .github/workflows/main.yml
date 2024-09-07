@@ -10,14 +10,12 @@ jobs:
     - name: Ver cosas del server
       run: |
         # python3 --version
-        cd && cd Pruebas
-        pwd
+        cd && cd Pruebas  ### OJO!! CADA PASO ES INDEPENDIENTE, EN CADA PASO DEBO CAMBIAR AL DIR DESEADO!
+        pwd   
         
     - name: Enviar cambios al server
       run: |
-        pwd
         cd && cd Pruebas
-        pwd
         # git config --global user.email "actions@github.com"
         # git config --global user.name "GitHub Actions"
-        # git pull
+        git pull
