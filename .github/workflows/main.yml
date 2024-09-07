@@ -8,7 +8,7 @@ jobs:
     runs-on: self-hosted
     steps:        
     - name: Ver cosas del print
-      run: 
+      run: |
         pwd
         ls
         echo $(python3 --version)
