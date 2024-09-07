@@ -4,13 +4,13 @@ on:
   push
 
 jobs:
-  Ejecutar_script:
+  Pruebas:
     runs-on: self-hosted
     steps:        
-    - name: Ver cosas del print
+    - name: Ver cosas del server
       run: |
-        pwd
-        ls
+        echo $(pwd)
+        echo $(ls)
         echo $(python3 --version)
         
     # - name: Correr script
